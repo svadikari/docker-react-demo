@@ -16,4 +16,5 @@ public interface OrderService {
     void saveOrder(Order order);
     Optional<Order> findById(String orderNumber);
     List<Order> findAll();
+    void deleteOrder(String orderNumber);
 }

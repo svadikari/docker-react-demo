@@ -33,4 +33,9 @@ public class OrderServiceImpl implements OrderService {
     public Optional<Order> findById(String orderNumber) {
         return orderRepository.findById(orderNumber);
     }
+
+    @Override
+    public void deleteOrder(String orderNumber) {
+        orderRepository.deleteById(orderNumber);
+    }
 }

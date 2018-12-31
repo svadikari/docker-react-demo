@@ -19,6 +19,22 @@ spec:
           envFrom:
             - configMapRef:
                 name: mongodb-config
+          env:
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                name: mongodb-secrets
+                key: username
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                name: mongodb-secrets
+                key: password
+            - name: MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-config
+                  key: datasource.name
           volumeMounts:
             - mountPath: /data/db
               name: mongodb

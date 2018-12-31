@@ -1,0 +1,62 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dockerreactdemo
+  labels:
+    app: dockerreactdemo
+    visualize: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockerreactdemo
+      serving: "true"
+  template:
+    metadata:
+      labels:
+        app: dockerreactdemo
+        version: "latest"
+        serving: "true"
+        visualize: "true"
+      annotations:
+        visualizer/uses: mongodb
+    spec:
+      containers:
+        - name: dockerreactdemo
+          image: dockerreactdemo:latest
+          imagePullPolicy: Never
+          env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: test
+          - name: SPRING_DATASOURCE_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: mongodb-config
+                key: datasource.host
+          - name: SPRING_DATASOURCE_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: mongodb-config
+                key: datasource.port
+          - name: SPRING_DATASOURCE_DBNAME
+            valueFrom:
+              configMapKeyRef:
+                name: mongodb-config
+                key: datasource.name
+          - name: SPRING_DATASOURCE_USER
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secrets
+                key: username
+          - name: SPRING_DATASOURCE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secrets
+                key: password
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+          ports:
+            - name: http
+              containerPort: 8080

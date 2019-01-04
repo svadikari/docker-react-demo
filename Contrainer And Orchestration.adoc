@@ -37,6 +37,8 @@ Kubernetes is a mature container orchestrator that runs in the same market as Do
 
 image::/images/K8SArch.png[]
 
+link:Docfile[]
+
 * Node
 
 The machine on which a cluster is running can either be Masters or Nodes. The naming makes sense. The Master is the control panel of the whole cluster. All commands we will run will be run on the Master instance. It will then decide which Node, or worker machine, in the cluster will take the workload.

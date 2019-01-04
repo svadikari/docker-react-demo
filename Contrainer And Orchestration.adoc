@@ -37,7 +37,7 @@ Kubernetes is a mature container orchestrator that runs in the same market as Do
 
 image::/images/K8SArch.png[]
 
-link:Docfile[]
+link:Dockerfile[]
 
 * Node
 

@@ -25,6 +25,26 @@ image::images/Containers-vs-Virtual-Machines.gif[]
 
 image::images/virtual-machine-vs-docker-memomy.png[]
 
+=== Docker installation and basic steps to create an image
+
+We can install docker by downloading dmg (mac supported file) or brew command line support.
+
+Mac: https://docs.docker.com/docker-for-mac/install/
+Windows: https://docs.docker.com/docker-for-windows/install/
+
+Brew: brew cask install docker
+
+Basic steps
+
+. docker --version : displays installed docker version
+. docker run hello-world: Basic application deployed on your docker
+. Go to application directory and run "./gradlew clean build"
+. Run ./gradlew unpack (Optional based on your Dockerfile version)
+. Run "docker build -t docker-react-demo . “: Will create docker image (application must have link:Dockerfile[])
+
+
+
+
 === What is Container orchestration?
 Containerisation has brought a lot of flexibility for developers in terms of managing the deployment of the applications. However, the more granular the application is, the more components it consists of and hence requires some sort of management for those.
 
